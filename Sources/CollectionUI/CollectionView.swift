@@ -44,39 +44,3 @@ private struct CollectionViewLayout: _VariadicView.UnaryViewRoot {
         CollectionViewImp(children: children)
     }
 }
-
-
-struct IncreasingView: View {
-    @State var height: CGFloat = 10
-    var body: some View {
-        Color.green
-            .frame(height: height)
-            .onTapGesture {
-                withAnimation {
-                    height += 100
-                }
-            }
-    }
-}
-
-struct SwiftUIView_Previews: PreviewProvider {
-    static let items = ["hello", "world"]
-    static var previews: some View {
-        CollectionView {
-            CollectionSection(id: 0) {
-                ForEach(items, id: \.self) { text in
-                    VStack {
-                        Text(text)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 50)
-                            .background(.gray.opacity(0.2))
-                            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 8)
-                        IncreasingView()
-                    }
-                }
-            }
-        }
-    }
-}
